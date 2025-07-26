@@ -1,24 +1,25 @@
-# README
+# Clinic Admin Portal
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simplified admin interface for healthcare providers to manage patients, appointments, notes, and billing, built with Ruby on Rails.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- User authentication via Devise
+- Patient CRUD: create, view, update, delete patient records
+- PostgreSQL for data persistence
 
-* System dependencies
+## Tech Stack
 
-* Configuration
+- Ruby on Rails 8
+- PostgreSQL
+- Devise for user authentication
+- Deployed on Render (coming soon)
 
-* Database creation
+## Setup
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+git clone https://github.com/yourusername/clinic_admin_portal.git
+cd clinic_admin_portal
+bundle install
+rails db:create db:migrate
+rails server
