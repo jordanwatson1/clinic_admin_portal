@@ -1,0 +1,27 @@
+<div id="<%= dom_id appointment %>">
+  <p>
+    <strong>Patient:</strong>
+    <%= appointment.patient.full_name rescue "Patient ##{appointment.patient_id}" %>
+  </p>
+
+  <p>
+    <strong>Start time:</strong>
+    <%= appointment.start_time %>
+  </p>
+
+  <p>
+    <strong>End time:</strong>
+    <%= appointment.end_time %>
+  </p>
+
+  <p>
+    <strong>Notes:</strong>
+    <%= appointment.notes %>
+  </p>
+
+  <p>
+    <%= link_to "Show", patient_appointment_path(appointment.patient, appointment) %> |
+    <%= link_to "Edit", edit_patient_appointment_path(appointment.patient, appointment) %> |
+    <%= button_to "Delete", patient_appointment_path(appointment.patient, appointment), method: :delete, data: { confirm: "Are you sure?" } %>
+  </p>
+</div>
