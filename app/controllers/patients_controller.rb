@@ -22,7 +22,8 @@ class PatientsController < ApplicationController
 
   # POST /patients or /patients.json
   def create
-    @patient = Patient.new(patient_params)
+    # Ensures that the user_id is automatically set using the currently authenticated user (via Devise).
+    @patient = current_user.patients.build(patient_params)
 
     respond_to do |format|
       if @patient.save
@@ -61,11 +62,11 @@ class PatientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_patient
-      @patient = Patient.find(params.expect(:id))
+      @patient = current_user.patients.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def patient_params
-      params.expect(patient: [ :first_name, :last_name, :dob, :email, :phone ])
+      params.require(:patient).permit(:first_name, :last_name, :dob, :email, :phone)
     end
 end
