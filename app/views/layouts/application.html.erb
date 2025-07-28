@@ -23,9 +23,15 @@
   </head>
 
   <body>
-    <%= yield %>
-    <nav>
-      <%= link_to "Patients", patients_path %>
+    <% if user_signed_in? %>
+    <nav style="margin-bottom: 20px;">
+      <%= link_to "Patients", patients_path %> |
+      <%= link_to "New Patient", new_patient_path %> |
+      <%= link_to "View Appointments", all_appointments_path %> |
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     </nav>
+  <% end %>
+
+  <%= yield %>
   </body>
 </html>
