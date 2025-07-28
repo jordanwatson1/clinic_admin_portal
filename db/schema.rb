@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_26_210903) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_28_170855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -24,6 +24,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_210903) do
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
 
+  create_table "exercises", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exercises_on_user_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -34,6 +43,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_210903) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_patients_on_user_id"
+  end
+
+  create_table "treatment_plan_exercises", force: :cascade do |t|
+    t.bigint "treatment_plan_id", null: false
+    t.bigint "exercise_id", null: false
+    t.integer "sets"
+    t.integer "reps"
+    t.text "instructions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_treatment_plan_exercises_on_exercise_id"
+    t.index ["treatment_plan_id"], name: "index_treatment_plan_exercises_on_treatment_plan_id"
+  end
+
+  create_table "treatment_plans", force: :cascade do |t|
+    t.string "title"
+    t.text "notes"
+    t.bigint "patient_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_treatment_plans_on_patient_id"
+    t.index ["user_id"], name: "index_treatment_plans_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,5 +81,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_26_210903) do
   end
 
   add_foreign_key "appointments", "patients"
+  add_foreign_key "exercises", "users"
   add_foreign_key "patients", "users"
+  add_foreign_key "treatment_plan_exercises", "exercises"
+  add_foreign_key "treatment_plan_exercises", "treatment_plans"
+  add_foreign_key "treatment_plans", "patients"
+  add_foreign_key "treatment_plans", "users"
 end
