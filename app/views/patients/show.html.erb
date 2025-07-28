@@ -7,4 +7,25 @@
   <%= link_to "Back to patients", patients_path %>
 
   <%= button_to "Destroy this patient", @patient, method: :delete %>
-</div>
+</div> 
+
+<h3>Appointments</h3>
+
+<%= link_to "➕ New Appointment", new_patient_appointment_path(@patient), class: "btn btn-primary" %>
+
+<% if @patient.appointments.any? %>
+  <ul>
+    <% @patient.appointments.each do |appointment| %>
+      <li>
+        <strong><%= appointment.start_time.strftime("%b %d, %Y %I:%M%p") %></strong>
+        to
+        <strong><%= appointment.end_time.strftime("%I:%M%p") %></strong><br>
+        <%= truncate(appointment.notes, length: 80) %><br>
+        <%= link_to "Edit", edit_patient_appointment_path(@patient, appointment) %> |
+        <%= link_to "Delete", patient_appointment_path(@patient, appointment), method: :delete, data: { confirm: "Are you sure?" } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No appointments for this patient yet.</p>
+<% end %>
