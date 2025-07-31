@@ -1,0 +1,13 @@
+<% content_for :title, "Editing treatment plan" %>
+
+<h1>Editing treatment plan</h1>
+
+<%= render "form", treatment_plan: @treatment_plan %>
+
+<br>
+
+<div>
+  <%= link_to "Show this treatment plan", patient_treatment_plan_path(@treatment_plan.patient, @treatment_plan) %> |
+  <%= link_to "Back to treatment plans", patient_treatment_plans_path(@treatment_plan.patient) %>
+</div>
+

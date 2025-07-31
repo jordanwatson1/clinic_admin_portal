@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<h2><%= @treatment_plan.title %></h2>
+<p><%= @treatment_plan.notes %></p>
+
+<h3>Exercises</h3>
+<% if @treatment_plan.treatment_plan_exercises.any? %>
+  <ul>
+    <% @treatment_plan.treatment_plan_exercises.each do |tpe| %>
+      <li>
+        <strong><%= tpe.exercise.title %></strong><br>
+        <em><%= tpe.sets %> sets of <%= tpe.reps %> reps</em><br>
+        <p><%= tpe.instructions %></p>
+
+        <% if tpe.exercise.media.attached? %>
+          <% if tpe.exercise.media.image? %>
+            <%= image_tag tpe.exercise.media, style: "max-width: 200px;" %>
+          <% elsif tpe.exercise.media.video? %>
+            <%= video_tag tpe.exercise.media, controls: true, style: "max-width: 300px;" %>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No exercises added to this plan yet.</p>
+<% end %>
+
+<div>
+  <%= link_to "Edit this treatment plan", edit_patient_treatment_plan_path(@treatment_plan.patient, @treatment_plan) %> |
+  <%= link_to "Back to patient", patient_path(@treatment_plan.patient) %>
+
+  <%= button_to "Destroy this treatment plan", patient_treatment_plan_path(@treatment_plan.patient, @treatment_plan), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>

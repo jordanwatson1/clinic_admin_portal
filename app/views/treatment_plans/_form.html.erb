@@ -1,0 +1,78 @@
+<%= tag.div id: "initial-plan-data", data: {
+  controller: "treatment-plan-builder",
+  treatment_plan_builder_initial_value: @treatment_plan.treatment_plan_exercises.to_json(include: :exercise)
+} %>
+
+<%= form_with(model: [@patient, @treatment_plan], local: true, id: "treatment-plan-form") do |form| %>
+  <% if @treatment_plan.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(@treatment_plan.errors.count, "error") %> prevented saving:</h2>
+      <ul>
+        <% @treatment_plan.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :notes %>
+  <%= form.text_area :notes %>
+
+  <h3>Exercises in Plan</h3>
+  <ul id="exercise-list" class="exercise-summary-list">
+    # <% @treatment_plan.treatment_plan_exercises.each_with_index do |tpe, index| %>
+    #   <li>
+    #     <strong><%= tpe.exercise&.title || 'Unknown Exercise' %></strong> — <%= tpe.sets %> sets x <%= tpe.reps %> reps
+    #     <br><em><%= tpe.instructions %></em>
+    #     <button type="button" onclick="this.parentElement.remove()">🗑 Remove</button>
+
+    #     <!-- Hidden Inputs -->
+    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][exercise_id]" value="<%= tpe.exercise_id %>">
+    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][sets]" value="<%= tpe.sets %>">
+    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][reps]" value="<%= tpe.reps %>">
+    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][instructions]" value="<%= tpe.instructions %>">
+    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][_destroy]" value="false">
+    #   </li>
+    # <% end %>
+  </ul>
+
+
+  <h4>Add Exercise to Plan</h4>
+  <div data-controller="treatment-plan-builder">
+    <div>
+      <label>Exercise</label>
+      <select data-treatment-plan-builder-target="exerciseId">
+        <option value="">-- Select --</option>
+        <% current_user.exercises.each do |exercise| %>
+          <option value="<%= exercise.id %>" data-title="<%= exercise.title %>"><%= exercise.title %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <label>Sets</label>
+      <input type="number" min="1" data-treatment-plan-builder-target="sets">
+    </div>
+
+    <div>
+      <label>Reps</label>
+      <input type="number" min="1" data-treatment-plan-builder-target="reps">
+    </div>
+
+    <div>
+      <label>Instructions</label>
+      <textarea data-treatment-plan-builder-target="instructions"></textarea>
+    </div>
+
+    <button type="button" data-action="click->treatment-plan-builder#addExercise">➕ Add to Plan</button>
+  </div>
+
+  <!-- Hidden field container -->
+  <div id="exercise-fields-container"></div>
+
+  <br>
+  <%= form.submit "Save Treatment Plan" %>
+<% end %>
