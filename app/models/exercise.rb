@@ -4,4 +4,6 @@ class Exercise < ApplicationRecord
 
   has_many :treatment_plan_exercises
   has_many :treatment_plans, through: :treatment_plan_exercises
+
+  validates :title, presence: true
 end

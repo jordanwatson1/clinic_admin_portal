@@ -8,3 +8,14 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.hidden {
+  display: none;
+}
+
+.exercise-summary-list > div {
+  background: #f8f8f8;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-left: 4px solid #0d6efd;
+  border-radius: 4px;
+}

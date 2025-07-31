@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   # Association: One user can have many patients
   has_many :patients, dependent: :destroy
+  has_many :exercises
+  has_many :treatment_plans
 end

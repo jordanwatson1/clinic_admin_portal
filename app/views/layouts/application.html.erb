@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Clinic Admin Portal" %></title>
+    <title><%= content_for(:title) || "Patient Treatment Plans" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -19,7 +19,7 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
@@ -28,8 +28,10 @@
       <%= link_to "Patients", patients_path %> |
       <%= link_to "New Patient", new_patient_path %> |
       <%= link_to "View Appointments", all_appointments_path %> |
+      <%= link_to "View Exercises", exercises_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     </nav>
+
   <% end %>
 
   <%= yield %>

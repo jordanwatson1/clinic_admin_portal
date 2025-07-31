@@ -29,3 +29,20 @@
 <% else %>
   <p>No appointments for this patient yet.</p>
 <% end %>
+
+<h3>Treatment Plans</h3>
+
+<%= link_to "➕ New Treatment Plan", new_patient_treatment_plan_path(@patient), class: "btn btn-primary" %>
+
+<% if @patient.treatment_plans.any? %>
+  <ul>
+    <% @patient.treatment_plans.each do |plan| %>
+      <li>
+        <strong><%= link_to plan.title, patient_treatment_plan_path(@patient, plan) %></strong>
+        <p><%= truncate(plan.notes, length: 100) %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No treatment plans for this patient yet.</p>
+<% end %>
