@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   
   resources :patients do
     resources :appointments
+    resources :treatment_plans
   end
+
+  resources :exercises
 
   # Viewing all appointments
   get '/all_appointments', to: 'appointments#index', as: 'all_appointments'
@@ -16,3 +19,4 @@ Rails.application.routes.draw do
 
   root to: "patients#index"
 end
+
