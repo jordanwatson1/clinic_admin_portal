@@ -1,0 +1,12 @@
+<% content_for :title, "Editing treatment plan exercise" %>
+
+<h1>Editing treatment plan exercise</h1>
+
+<%= render "form", treatment_plan_exercise: @treatment_plan_exercise %>
+
+<br>
+
+<div>
+  <%= link_to "Show this treatment plan exercise", @treatment_plan_exercise %> |
+  <%= link_to "Back to treatment plan exercises", treatment_plan_exercises_path %>
+</div>

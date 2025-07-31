@@ -1,0 +1,32 @@
+# <p style="color: green"><%= notice %></p>
+
+# <% content_for :title, "Treatment plan exercises" %>
+
+# <h1>Treatment plan exercises</h1>
+
+# <div id="treatment_plan_exercises">
+#   <% @treatment_plan_exercises.each do |treatment_plan_exercise| %>
+#     <%= render treatment_plan_exercise %>
+#     <p>
+#       <%= link_to "Show this treatment plan exercise", treatment_plan_exercise %>
+#     </p>
+#   <% end %>
+# </div>
+
+# <%= link_to "New treatment plan exercise", new_treatment_plan_exercise_path %>
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Treatment plan exercises" %>
+
+<h1>Treatment plan exercises</h1>
+
+<div id="treatment_plan_exercises">
+  <% @treatment_plan_exercises.each do |treatment_plan_exercise| %>
+    <%= render treatment_plan_exercise %>
+    <p>
+      <%= link_to "Show this treatment plan exercise", treatment_plan_exercise %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New treatment plan exercise", new_treatment_plan_exercise_path %>

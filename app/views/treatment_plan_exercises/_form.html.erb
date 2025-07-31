@@ -1,0 +1,42 @@
+<%= form_with(model: treatment_plan_exercise) do |form| %>
+  <% if treatment_plan_exercise.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(treatment_plan_exercise.errors.count, "error") %> prohibited this treatment_plan_exercise from being saved:</h2>
+
+      <ul>
+        <% treatment_plan_exercise.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :treatment_plan_id, style: "display: block" %>
+    <%= form.text_field :treatment_plan_id %>
+  </div>
+
+  <div>
+    <%= form.label :exercise_id, style: "display: block" %>
+    <%= form.text_field :exercise_id %>
+  </div>
+
+  <div>
+    <%= form.label :sets, style: "display: block" %>
+    <%= form.number_field :sets %>
+  </div>
+
+  <div>
+    <%= form.label :reps, style: "display: block" %>
+    <%= form.number_field :reps %>
+  </div>
+
+  <div>
+    <%= form.label :instructions, style: "display: block" %>
+    <%= form.textarea :instructions %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

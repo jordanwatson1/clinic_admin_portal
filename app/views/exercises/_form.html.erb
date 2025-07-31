@@ -1,0 +1,35 @@
+<%= form_with(model: exercise, local: true, html: { multipart: true }) do |form| %>
+  <% if exercise.errors.any? %>
+    <div id="error_explanation" style="color: red">
+      <h2><%= pluralize(exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
+
+      <ul>
+        <% exercise.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %><br>
+    <%= form.text_field :title, required: true, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %><br>
+    <%= form.text_area :description, rows: 5 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media, "Upload Image or Video" %><br>
+    <%= form.file_field :media, direct_upload: true %>
+    <% if exercise.media.attached? %>
+      <p>Current file: <%= exercise.media.filename.to_s %></p>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save Exercise", class: "btn btn-primary" %>
+  </div>
+<% end %>

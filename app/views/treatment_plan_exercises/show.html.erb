@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @treatment_plan_exercise %>
+
+<div>
+  <%= link_to "Edit this treatment plan exercise", edit_treatment_plan_exercise_path(@treatment_plan_exercise) %> |
+  <%= link_to "Back to treatment plan exercises", treatment_plan_exercises_path %>
+
+  <%= button_to "Destroy this treatment plan exercise", @treatment_plan_exercise, method: :delete %>
+</div>
