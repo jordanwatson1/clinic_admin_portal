@@ -1,3 +1,10 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import { Application } from "@hotwired/stimulus"
 import "@hotwired/turbo-rails"
-import "controllers"
+
+import TestController from "./controllers/test_controller"
+import TreatmentPlanBuilderController from "./controllers/treatment_plan_builder_controller"
+
+const application = Application.start()
+
+application.register("test", TestController)
+application.register("treatment-plan-builder", TreatmentPlanBuilderController)
