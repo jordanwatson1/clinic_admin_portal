@@ -13,12 +13,22 @@
         <p><%= tpe.instructions %></p>
 
         <% if tpe.exercise.media.attached? %>
-          <% if tpe.exercise.media.image? %>
+          <% content_type = tpe.exercise.media.content_type %>
+
+          <% if content_type.start_with?("image/") %>
             <%= image_tag tpe.exercise.media, style: "max-width: 200px;" %>
-          <% elsif tpe.exercise.media.video? %>
-            <%= video_tag tpe.exercise.media, controls: true, style: "max-width: 300px;" %>
+
+          <% elsif content_type.start_with?("video/") %>
+            <video width="320" height="240" controls>
+              <source src="<%= url_for(tpe.exercise.media) %>" type="<%= content_type %>">
+              Your browser does not support the video tag.
+            </video>
+
+          <% else %>
+            <%= link_to "Download File", url_for(tpe.exercise.media) %>
           <% end %>
         <% end %>
+
       </li>
     <% end %>
   </ul>
