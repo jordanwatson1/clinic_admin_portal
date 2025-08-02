@@ -5,6 +5,7 @@ class TreatmentPlansController < ApplicationController
 
   # GET /treatment_plans or /treatment_plans.json
   def index
+    @patient = current_user.patients.find(params[:patient_id])
     @treatment_plans = @patient.treatment_plans.includes(:treatment_plan_exercises)
   end
 

@@ -8,9 +8,9 @@
   <% @treatment_plans.each do |treatment_plan| %>
     <%= render treatment_plan %>
     <p>
-      <%= link_to "Show this treatment plan", treatment_plan %>
+      <%= link_to "Show this treatment plan", patient_treatment_plan_path(treatment_plan.patient, treatment_plan) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New treatment plan", new_treatment_plan_path %>
+<%= link_to "New treatment plan", new_patient_treatment_plan_path(@patient) %>
