@@ -29,7 +29,7 @@
       <%= link_to "New Patient", new_patient_path %> |
       <%= link_to "View Appointments", all_appointments_path %> |
       <%= link_to "View Exercises", exercises_path %> |
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, form_class: "logout-form", class: "btn btn-link" %>
     </nav>
 
   <% end %>
