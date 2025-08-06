@@ -1,6 +1,8 @@
 # 🧘‍♀️ Patient Treatment Plan App
 A lightweight Rails web application that enables healthcare practitioners to manage patients, create and assign personalized treatment plans, and track appointments, all in one place. Built with usability, scalability, and clinical workflows in mind.
 
+Here are a few screen shots of the main pages!
+
 <div align="center">
   <table>
     <tr>
