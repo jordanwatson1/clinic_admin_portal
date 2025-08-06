@@ -1,16 +1,33 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Exercises" %>
 
-<h1>Exercises</h1>
+<% if notice %>
+  <div class="mb-4 p-3 rounded-md bg-green-100 text-green-800 text-sm">
+    <%= notice %>
+  </div>
+<% end %>
 
-<div id="exercises">
-  <% @exercises.each do |exercise| %>
-    <%= render exercise %>
-    <p>
-      <%= link_to "Show this exercise", exercise %>
-    </p>
-  <% end %>
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-semibold text-gray-800">Exercises</h1>
+  <%= link_to "New Exercise", new_exercise_path,
+        class: "inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition" %>
 </div>
 
-<%= link_to "New exercise", new_exercise_path %>
+<% if @exercises.any? %>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @exercises.each do |exercise| %>
+      <div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-between">
+        <div>
+          <h2 class="text-lg font-semibold text-gray-800 mb-1"><%= exercise.title %></h2>
+          <p class="text-gray-600 text-sm mb-2"><%= truncate(exercise.description, length: 100) %></p>
+        </div>
+
+        <div class="mt-4">
+          <%= link_to "View", exercise_path(exercise),
+                class: "underline text-blue-600 text-sm font-medium hover:text-blue-800" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-gray-600">No exercises have been added yet.</p>
+<% end %>

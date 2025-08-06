@@ -1,9 +1,8 @@
 <%= form_with(model: exercise, local: true, html: { multipart: true }) do |form| %>
   <% if exercise.errors.any? %>
-    <div id="error_explanation" style="color: red">
-      <h2><%= pluralize(exercise.errors.count, "error") %> prohibited this exercise from being saved:</h2>
-
-      <ul>
+    <div class="mb-4 p-4 rounded bg-red-100 text-red-700">
+      <h2 class="font-semibold mb-2"><%= pluralize(exercise.errors.count, "error") %> prevented this exercise from being saved:</h2>
+      <ul class="list-disc pl-5">
         <% exercise.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -11,25 +10,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %><br>
-    <%= form.text_field :title, required: true, autofocus: true %>
+  <div class="mb-4">
+    <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, required: true, autofocus: true, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %><br>
-    <%= form.text_area :description, rows: 5 %>
+  <div class="mb-4">
+    <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :description, rows: 5, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
-  <div class="field">
-    <%= form.label :media, "Upload Image or Video" %><br>
-    <%= form.file_field :media, direct_upload: true %>
+  <div class="mb-4">
+    <%= form.label :media, "Upload Image or Video", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.file_field :media, direct_upload: true, class: "mt-1 block w-full text-sm text-gray-700" %>
     <% if exercise.media.attached? %>
-      <p>Current file: <%= exercise.media.filename.to_s %></p>
+      <p class="text-sm text-gray-600 mt-1">Current file: <%= exercise.media.filename.to_s %></p>
     <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Save Exercise", class: "btn btn-primary" %>
+  <div>
+    <%= form.submit "Save Exercise", class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow transition" %>
   </div>
 <% end %>
