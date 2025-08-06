@@ -30,9 +30,9 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@hotwired/stimulus", "npm:3.2.2"],\
           ["@hotwired/turbo-rails", "npm:8.0.16"],\
-          ["@rails/ujs", "npm:7.1.3-4"],\
           ["app", "workspace:."],\
-          ["esbuild", "npm:0.25.8"]\
+          ["esbuild", "npm:0.25.8"],\
+          ["tailwindcss", "npm:4.1.11"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -309,24 +309,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["@rails/ujs", [\
-      ["npm:7.1.3-4", {\
-        "packageLocation": "../../../../../../../../home/jorwatt/.yarn/berry/cache/@rails-ujs-npm-7.1.3-4-25966b1d30-10c0.zip/node_modules/@rails/ujs/",\
-        "packageDependencies": [\
-          ["@rails/ujs", "npm:7.1.3-4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["app", [\
       ["workspace:.", {\
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@hotwired/stimulus", "npm:3.2.2"],\
           ["@hotwired/turbo-rails", "npm:8.0.16"],\
-          ["@rails/ujs", "npm:7.1.3-4"],\
           ["app", "workspace:."],\
-          ["esbuild", "npm:0.25.8"]\
+          ["esbuild", "npm:0.25.8"],\
+          ["tailwindcss", "npm:4.1.11"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -362,6 +353,15 @@ const RAW_RUNTIME_STATE =
           ["@esbuild/win32-ia32", "npm:0.25.8"],\
           ["@esbuild/win32-x64", "npm:0.25.8"],\
           ["esbuild", "npm:0.25.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tailwindcss", [\
+      ["npm:4.1.11", {\
+        "packageLocation": "../../../../../../../../home/jorwatt/.yarn/berry/cache/tailwindcss-npm-4.1.11-0771b18233-10c0.zip/node_modules/tailwindcss/",\
+        "packageDependencies": [\
+          ["tailwindcss", "npm:4.1.11"]\
         ],\
         "linkType": "HARD"\
       }]\
