@@ -43,7 +43,7 @@ class TreatmentPlansController < ApplicationController
   # PATCH/PUT /treatment_plans/1 or /treatment_plans/1.json
   def update
     logger.debug params[:treatment_plan].inspect
-    
+
     respond_to do |format|
       if @treatment_plan.update(treatment_plan_params)
         format.html { redirect_to patient_treatment_plan_path(@patient, @treatment_plan), notice: "Treatment plan was successfully updated." }
@@ -78,7 +78,7 @@ class TreatmentPlansController < ApplicationController
     def treatment_plan_params
       params.require(:treatment_plan).permit(
         :title, :notes,
-        treatment_plan_exercises_attributes: [:id, :exercise_id, :sets, :reps, :instructions, :_destroy]
+        treatment_plan_exercises_attributes: [ :id, :exercise_id, :sets, :reps, :instructions, :_destroy ]
       )
     end
 end

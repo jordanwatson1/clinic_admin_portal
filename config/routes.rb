@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   resources :patients do
     resources :appointments
     resources :treatment_plans
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :exercises
 
   # Viewing all appointments
-  get '/all_appointments', to: 'appointments#index', as: 'all_appointments'
+  get "/all_appointments", to: "appointments#index", as: "all_appointments"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -19,4 +19,3 @@ Rails.application.routes.draw do
 
   root to: "patients#index"
 end
-
