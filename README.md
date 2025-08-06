@@ -1,58 +1,62 @@
 # 🧘‍♀️ Patient Treatment Plan Module
 
-A lightweight Rails web application that enables healthcare practitioners to manage and assign personalized treatment plans with exercise videos/images to their patients. This tool supports patient engagement and clinical follow-up via smart reminders.
+A lightweight Rails web application that enables healthcare practitioners to manage patients, create and assign personalized treatment plans, and track appointments, all in one place. Built with usability, scalability, and clinical workflows in mind.
 
 ---
 
 ## 🚀 Project Overview
 
 **Purpose:**  
-To help healthcare providers efficiently create, assign, and manage exercise-based treatment plans, while improving patient compliance through automated reminders.
+Initially to gain experience with Ruby of Rails but will be expanded upon to help healthcare providers efficiently manage their patients’ treatment journeys, from initial appointments to personalized rehabilitation plans, with notification reminders.
 
 ---
 
 ## ✅ MVP Features (1-Week Scope)
 
-### 1. Exercise Library Management (Practitioner-facing)
-- Upload and store exercise **videos or images**.
-- Add new exercises with:
-  - Title
+### 1. Patient & Appointment Management
+- Create, view, update, and delete patients.
+- Book, view, and manage appointments with timestamps and repeat tracking.
+
+### 2. Exercise Library
+- Upload exercises with **video or image files**.
+- Each exercise includes:
+  - Title (auto-formatted to Title Case)
   - Description
-  - Tags (e.g., "hip mobility", "post-op")
-- View, update, and delete saved exercises.
+- View and edit the full library of exercises.
 
-### 2. Treatment Plan Builder (Practitioner-facing)
-- Search and select exercises from the database.
-- Create a treatment plan that includes:
-  - Assigned patient
-  - Start date and optional review date
-  - Custom notes (e.g., reps, sets, frequency)
-- Save plans for future reuse or editing.
-- View assigned treatment plans on the patient profile.
+### 3. Treatment Plan Builder
+- Assign one or more exercises to a patient with:
+  - Sets
+  - Reps
+  - Custom instructions
+- Save treatment plans and edit them later.
+- View a summary of exercises, media previews, and custom notes.
 
-### 3. Smart Reminder System (Minimum Implementation)
-- **Patient Reminder**: Email patients if they haven’t booked a follow-up appointment X weeks after plan assignment.
-- **Practitioner Reminder**: Email practitioners when a treatment plan is approaching its review/update date.
+### 4. Notification System (TODO)
+- **Email Validator**: Prevents saving invalid patient emails.
+- **Patient Reminder** (placeholder): Will notify patients who haven't followed up.
+- **Practitioner Prompt** (planned): Will remind clinicians to review plans.
 
 ---
 
 ## 🧪 Sample Use Case
 
-1. Dr. Jane logs in and uploads a new "Shoulder Mobility" exercise with a demonstration video.
-2. She creates a treatment plan for patient Sam, selecting the uploaded exercise and adding custom reps/sets.
-3. Sam receives an email with his treatment plan.
-4. Two weeks later, Sam hasn't booked an appointment, he gets a reminder.
-5. One month later, Jane receives a prompt to review Sam’s plan.
+1. Dr. Jane logs in and uploads a new "Shoulder Mobility" exercise with a short video demo.
+2. They assign the exercise to John with custom instructions and 3x10 sets/reps.
+3. John receives an email with his treatment plan.
+4. Two weeks later, John hasn't booked an appointment, he gets a reminder.
+5. One month later, Jane receives a prompt to review John’s plan.
 
 ---
 
 ## 🔧 Tech Stack
 
-- **Backend**: Ruby on Rails 7
+- **Backend**: Ruby on Rails
+- **Frontend**: TailwindCSS + StimulusJS
 - **Database**: PostgreSQL
 - **File Uploads**: Active Storage
 - **Authentication**: Devise
-- **Email/Reminders**: ActionMailer + ActiveJob (Async)
+- **Email/Reminders**: ActionMailer + ActiveJob
 
 ---
 
@@ -60,8 +64,8 @@ To help healthcare providers efficiently create, assign, and manage exercise-bas
 
 1. **Clone the repo**
     ```bash
-    git clone https://github.com/yourusername/clinic_admin_portal.git
-    cd clinic_admin_portal
+    git clone https://github.com/yourusername/patient_treatment_plans.git
+    cd patient_treatment_plans
 
 2. **Install dependencies**
     ```bash
@@ -72,11 +76,11 @@ To help healthcare providers efficiently create, assign, and manage exercise-bas
     ```bash
     rails db:create
     rails db:migrate
-    rails db:seed
+    rails db:seed  # if you have seed data
 
 4. **Run the server**
     ```bash
-    rails server
+    ./bin/dev
 
 5. **Visit the app**
     (http://localhost:3000)
@@ -87,7 +91,11 @@ To help healthcare providers efficiently create, assign, and manage exercise-bas
 
 If given more time, the following features could further improve the platform:
 
-- Patient login portal to view and follow assigned plans.
+- Auto-title-casing for patient and exercise names.
+- Email validation for patient accounts.
+- File upload constraints (image/video size & type).
+- Appointment repeat tracking and completion flags.
+- Role-based access for clinics, patients, and admins.
 - Interactive progress tracking (e.g., log exercises completed).
 - Calendar integration (Google/Outlook) for syncing follow-up reminders.
 - Template system for saving reusable treatment plan formats.
@@ -107,4 +115,4 @@ Full-Stack Developer @ Redlen Technologies
 
 ## 📄 License
 
-This project is for demonstration and educational purposes only.
+This project is for demonstration and educational purposes... For now.
