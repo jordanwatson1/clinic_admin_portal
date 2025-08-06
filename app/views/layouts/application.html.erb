@@ -17,23 +17,35 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="bg-gray-50 text-gray-800 font-sans leading-relaxed antialiased">
+    <div class="bg-blue-200 p-4 rounded-lg shadow-lg">
+      </br>
+      </br>
+    </div>
     <% if user_signed_in? %>
-    <nav style="margin-bottom: 20px;">
-      <%= link_to "Patients", patients_path %> |
-      <%= link_to "New Patient", new_patient_path %> |
-      <%= link_to "View Appointments", all_appointments_path %> |
-      <%= link_to "View Exercises", exercises_path %> |
-      <%= button_to "Logout", destroy_user_session_path, method: :delete, form_class: "logout-form", class: "btn btn-link" %>
-    </nav>
+      <nav class="bg-white border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between h-16 items-center">
+            <div class="flex space-x-8">
+              <%= link_to "Patients", root_path, class: "inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-600 transition" %>
+              <%= link_to "Appointments", all_appointments_path, class: "inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-600 transition" %>
+              <%= link_to "Exercises", exercises_path, class: "inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-600 transition" %>
+            </div>
+            <div class="flex items-center">
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-sm text-red-600 hover:text-red-800 bg-white border border-red-600 px-3 py-1 rounded transition", form_class: "inline" %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <% end %>
 
-  <% end %>
-
-  <%= yield %>
+    <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+      <%= yield %>
+    </main>
   </body>
+
 </html>
