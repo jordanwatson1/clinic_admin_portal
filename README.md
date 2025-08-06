@@ -1,8 +1,40 @@
-# 🧘‍♀️ Patient Treatment Plan Module
-
+# 🧘‍♀️ Patient Treatment Plan App
 A lightweight Rails web application that enables healthcare practitioners to manage patients, create and assign personalized treatment plans, and track appointments, all in one place. Built with usability, scalability, and clinical workflows in mind.
 
----
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/homepage.png" alt="Homepage" width="800"/><br/>
+        <sub>Homepage</sub>
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/view_patient.png" alt="View Patient" width="800"/><br/>
+        <sub>View Patient</sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/new_appointment.png" alt="New Appointment" width="800"/><br/>
+        <sub>New Appointment</sub>
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/exercises.png" alt="Exercises" width="800"/><br/>
+        <sub>Exercises</sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="docs/screenshots/new_treatment_plan.png" alt="New Treatment Plan" width="800"/><br/>
+        <sub>New Treatment Plan</sub>
+      </td>
+      <td align="center">
+        <img src="docs/screenshots/view_treatment_plan.png" alt="View Treatment Plan" width="800"/><br/>
+        <sub>View Treatment Plan</sub>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## 🚀 Project Overview
 
@@ -95,6 +127,7 @@ If given more time, the following features could further improve the platform:
 - Email validation for patient accounts.
 - File upload constraints (image/video size & type).
 - Appointment repeat tracking and completion flags.
+- Show completed vs upcoming appointments.
 - Role-based access for clinics, patients, and admins.
 - Interactive progress tracking (e.g., log exercises completed).
 - Calendar integration (Google/Outlook) for syncing follow-up reminders.
