@@ -1,15 +1,42 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "All Appointments" %>
 
-<% content_for :title, "Appointments" %>
-
-<h1>Appointments</h1>
-
-<div id="appointments">
-  <% @appointments.each do |appointment| %>
-    <%= render appointment %>
-    <p>
-      <%= link_to "Show this appointment", patient_appointment_path(appointment.patient, appointment) %>
+<div class="max-w-5xl mx-auto mt-8">
+  <% if notice %>
+    <p class="mb-4 text-green-600 text-sm font-medium bg-green-100 p-2 rounded border border-green-300">
+      <%= notice %>
     </p>
   <% end %>
-</div>
 
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">All Appointments</h1>
+  </div>
+
+  <% if @appointments.any? %>
+    <div class="grid">
+      <% @appointments.order(:start_time).each do |appointment| %>
+        <div class="bg-white border border-gray-200 rounded-lg shadow p-4 hover:shadow-md transition">
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-lg font-semibold text-gray-700">
+                <%= appointment.start_time.strftime("%b %d, %Y %I:%M%p") %> – <%= appointment.end_time.strftime("%I:%M%p") %>
+              </h2>
+              <p class="text-sm text-gray-500 mb-1">
+                Patient: <%= link_to appointment.patient.full_name, patient_path(appointment.patient), class: "text-blue-600 hover:underline" %>
+              </p>
+              <p class="text-sm text-gray-600"><%= truncate(appointment.notes, length: 100) %></p>
+            </div>
+            <div class="flex items-center gap-4 text-sm underline mt-2">
+              <%= link_to "View", patient_appointment_path(appointment.patient, appointment), class: "inline-block text-sm text-blue-600 hover:text-blue-800 underline" %>
+              <%= link_to "Edit", edit_patient_appointment_path(appointment.patient, appointment), class: "inline-block text-sm text-yellow-600 hover:text-yellow-800 underline" %>
+              <%= link_to "Delete", patient_appointment_path(appointment.patient, appointment), method: :delete, data: { confirm: "Are you sure?" }, class: "inline-block text-sm text-red-600 hover:text-red-800 underline" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="text-gray-600 mt-4 text-center">
+      <p>No appointments found.</p>
+    </div>
+  <% end %>
+</div>

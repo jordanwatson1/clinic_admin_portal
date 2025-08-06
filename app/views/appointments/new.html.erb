@@ -1,11 +1,11 @@
-<% content_for :title, "New appointment" %>
+<% content_for :title, "New Appointment" %>
 
-<h1>New appointment</h1>
+<div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow space-y-6">
+  <h1 class="text-2xl font-bold text-gray-800">New Appointment</h1>
 
-<%= render 'form', appointment: @appointment, patient: @patient %>
+  <%= render 'form', appointment: @appointment, patient: @patient %>
 
-<br>
-
-<div>
-  <%= link_to "Back to appointments", patient_appointments_path(@patient) %>
+  <div class="pt-4">
+    <%= link_to "← Back to Appointments", patient_appointments_path(@patient), class: "text-blue-700 underline text-sm" %>
+  </div>
 </div>

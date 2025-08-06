@@ -1,9 +1,8 @@
-<%= form_with(model: [patient, appointment]) do |form| %>
+<%= form_with(model: [patient, appointment], class: "space-y-6") do |form| %>
   <% if appointment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
-
-      <ul>
+    <div class="bg-red-100 border border-red-400 text-red-700 p-4 rounded">
+      <h2 class="font-semibold mb-2"><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+      <ul class="list-disc pl-5">
         <% appointment.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -12,21 +11,21 @@
   <% end %>
 
   <div>
-    <%= form.label :start_time, style: "display: block" %>
-    <%= form.datetime_field :start_time %>
+    <%= form.label :start_time, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= form.datetime_field :start_time, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
   <div>
-    <%= form.label :end_time, style: "display: block" %>
-    <%= form.datetime_field :end_time %>
+    <%= form.label :end_time, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= form.datetime_field :end_time, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
   <div>
-    <%= form.label :notes, style: "display: block" %>
-    <%= form.textarea :notes %>
+    <%= form.label :notes, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= form.text_area :notes, rows: 4, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit appointment.persisted? ? "Save Appointment" : "Create Appointment", class: "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded" %>
   </div>
 <% end %>

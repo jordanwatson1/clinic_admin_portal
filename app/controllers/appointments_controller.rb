@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
                       .includes(:patient)
                       .joins(:patient)
                       .where(patients: { user_id: current_user.id })
+                      .order(:start_time)
   end
 
   def show; end
