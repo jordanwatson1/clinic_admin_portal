@@ -1,11 +1,11 @@
-<% content_for :title, "New patient" %>
+<% content_for :title, "New Patient" %>
 
-<h1>New patient</h1>
+<h1 class="text-2xl font-semibold text-gray-800 mb-6">New Patient</h1>
 
-<%= render "form", patient: @patient %>
+<div class="bg-white border border-gray-200 rounded-xl shadow p-6 max-w-2xl">
+  <%= render "form", patient: @patient %>
+</div>
 
-<br>
-
-<div>
-  <%= link_to "Back to patients", patients_path %>
+<div class="mt-6">
+  <%= link_to "← Back to Patients", patients_path, class: "text-blue-600 hover:text-blue-800 underline text-sm" %>
 </div>

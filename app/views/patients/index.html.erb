@@ -1,16 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Patients" %>
 
-<h1>Patients</h1>
+<h1 class="text-2xl font-semibold text-gray-800 mb-4">Patients</h1>
 
-<div id="patients">
+<div class="grid">
   <% @patients.each do |patient| %>
-    <%= render patient %>
-    <p>
-      <%= link_to "Show this patient", patient %>
-    </p>
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 flex justify-between items-center">
+      <div>
+        <p class="text-lg font-medium text-gray-900"><%= patient.full_name %></p>
+        <p class="text-sm text-gray-500"><%= patient.email %></p>
+      </div>
+      <div class="space-x-2">
+        <%= link_to "View", patient_path(patient), class: "inline-block text-sm text-blue-600 hover:text-blue-800 underline" %>
+        <%= link_to "Edit", edit_patient_path(patient), class: "inline-block text-sm text-yellow-600 hover:text-yellow-800 underline" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New patient", new_patient_path %>
+<div class="mt-8">
+  <%= link_to "New Patient", new_patient_path, class: "inline-block bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg shadow transition-all" %>
+</div>
+
