@@ -3,11 +3,11 @@
   treatment_plan_builder_initial_value: @treatment_plan.treatment_plan_exercises.to_json(include: :exercise)
 } %>
 
-<%= form_with(model: [@patient, @treatment_plan], local: true, id: "treatment-plan-form") do |form| %>
+<%= form_with(model: [@patient, @treatment_plan], local: true, id: "treatment-plan-form", class: "space-y-6") do |form| %>
   <% if @treatment_plan.errors.any? %>
-    <div class="error-messages">
-      <h2><%= pluralize(@treatment_plan.errors.count, "error") %> prevented saving:</h2>
-      <ul>
+    <div class="bg-red-100 text-red-800 p-4 rounded-md">
+      <h2 class="font-semibold mb-2"><%= pluralize(@treatment_plan.errors.count, "error") %> prevented saving:</h2>
+      <ul class="list-disc pl-6">
         <% @treatment_plan.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -15,36 +15,34 @@
     </div>
   <% end %>
 
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+  <!-- Title -->
+  <div>
+    <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
 
-  <%= form.label :notes %>
-  <%= form.text_area :notes %>
+  <!-- Notes -->
+  <div>
+    <%= form.label :notes, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :notes, rows: 4, class: "mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+  </div>
 
-  <h3>Exercises in Plan</h3>
-  <ul id="exercise-list" class="exercise-summary-list">
-    # <% @treatment_plan.treatment_plan_exercises.each_with_index do |tpe, index| %>
-    #   <li>
-    #     <strong><%= tpe.exercise&.title || 'Unknown Exercise' %></strong> — <%= tpe.sets %> sets x <%= tpe.reps %> reps
-    #     <br><em><%= tpe.instructions %></em>
-    #     <button type="button" onclick="this.parentElement.remove()">🗑 Remove</button>
+  <!-- Exercise Summary -->
+  <div>
+    <h3 class="text-lg font-semibold text-gray-800">Exercises in Plan</h3>
+    <ul id="exercise-list" class="divide-y divide-gray-200 mt-4">
+      <!-- JS-injected summary rows -->
+    </ul>
+  </div>
 
-    #     <!-- Hidden Inputs -->
-    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][exercise_id]" value="<%= tpe.exercise_id %>">
-    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][sets]" value="<%= tpe.sets %>">
-    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][reps]" value="<%= tpe.reps %>">
-    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][instructions]" value="<%= tpe.instructions %>">
-    #     <input type="hidden" name="treatment_plan[treatment_plan_exercises_attributes][<%= index %>][_destroy]" value="false">
-    #   </li>
-    # <% end %>
-  </ul>
+  <!-- Add Exercise Section -->
+  <div data-controller="treatment-plan-builder" class="bg-gray-50 p-4 rounded-md border border-gray-200 space-y-4">
+    <h4 class="text-md font-semibold text-gray-700">Add Exercise to Plan</h4>
 
-
-  <h4>Add Exercise to Plan</h4>
-  <div data-controller="treatment-plan-builder">
+    <!-- Exercise Selector -->
     <div>
-      <label>Exercise</label>
-      <select data-treatment-plan-builder-target="exerciseId">
+      <label class="block text-sm font-medium text-gray-700">Exercise</label>
+      <select data-treatment-plan-builder-target="exerciseId" class="mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
         <option value="">-- Select --</option>
         <% current_user.exercises.each do |exercise| %>
           <option value="<%= exercise.id %>" data-title="<%= exercise.title %>"><%= exercise.title %></option>
@@ -52,27 +50,41 @@
       </select>
     </div>
 
+    <!-- Sets -->
     <div>
-      <label>Sets</label>
-      <input type="number" min="1" data-treatment-plan-builder-target="sets">
+      <label class="block text-sm font-medium text-gray-700">Sets</label>
+      <input type="number" min="1" data-treatment-plan-builder-target="sets"
+             class="mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+    </div>
+
+    <!-- Reps -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Reps</label>
+      <input type="number" min="1" data-treatment-plan-builder-target="reps"
+             class="mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+    </div>
+
+    <!-- Instructions -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Instructions</label>
+      <textarea data-treatment-plan-builder-target="instructions"
+                class="mt-1 block w-full rounded-md bg-gray-50 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
     </div>
 
     <div>
-      <label>Reps</label>
-      <input type="number" min="1" data-treatment-plan-builder-target="reps">
+      <button type="button"
+              data-action="click->treatment-plan-builder#addExercise"
+              class="bg-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-blue-700 transition">
+        Add to Plan
+      </button>
     </div>
-
-    <div>
-      <label>Instructions</label>
-      <textarea data-treatment-plan-builder-target="instructions"></textarea>
-    </div>
-
-    <button type="button" data-action="click->treatment-plan-builder#addExercise">➕ Add to Plan</button>
   </div>
 
-  <!-- Hidden field container -->
+  <!-- Hidden Field Container -->
   <div id="exercise-fields-container"></div>
 
-  <br>
-  <%= form.submit "Save Treatment Plan" %>
+  <!-- Submit -->
+  <div>
+    <%= form.submit "Save Treatment Plan", class: "bg-green-600 text-white text-sm font-semibold px-6 py-2 rounded-md hover:bg-green-700 transition" %>
+  </div>
 <% end %>
