@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@hotwired/turbo-rails", "npm:8.0.16"],\
           ["app", "workspace:."],\
           ["esbuild", "npm:0.25.8"],\
+          ["stimulus", "npm:3.2.2"],\
           ["tailwindcss", "npm:4.1.11"]\
         ],\
         "linkType": "SOFT"\
@@ -280,6 +281,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@hotwired/stimulus-webpack-helpers", [\
+      ["npm:1.0.1", {\
+        "packageLocation": "../../../../../../../../home/jorwatt/.yarn/berry/cache/@hotwired-stimulus-webpack-helpers-npm-1.0.1-91fa2baa17-10c0.zip/node_modules/@hotwired/stimulus-webpack-helpers/",\
+        "packageDependencies": [\
+          ["@hotwired/stimulus-webpack-helpers", "npm:1.0.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:472d6ad9f0b323948640c0e6ba25e39068ab043b780b923da3c72e15bcb5ed34e3040b22af6d0b2f7ac0017bbfed64eab536f79330b0981e1e1e002c9e6eb683#npm:1.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/@hotwired-stimulus-webpack-helpers-virtual-bf2b354e13/9/home/jorwatt/.yarn/berry/cache/@hotwired-stimulus-webpack-helpers-npm-1.0.1-91fa2baa17-10c0.zip/node_modules/@hotwired/stimulus-webpack-helpers/",\
+        "packageDependencies": [\
+          ["@hotwired/stimulus", "npm:3.2.2"],\
+          ["@hotwired/stimulus-webpack-helpers", "virtual:472d6ad9f0b323948640c0e6ba25e39068ab043b780b923da3c72e15bcb5ed34e3040b22af6d0b2f7ac0017bbfed64eab536f79330b0981e1e1e002c9e6eb683#npm:1.0.1"],\
+          ["@types/hotwired__stimulus", null]\
+        ],\
+        "packagePeers": [\
+          "@hotwired/stimulus",\
+          "@types/hotwired__stimulus"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@hotwired/turbo", [\
       ["npm:8.0.13", {\
         "packageLocation": "../../../../../../../../home/jorwatt/.yarn/berry/cache/@hotwired-turbo-npm-8.0.13-db837ce7e0-10c0.zip/node_modules/@hotwired/turbo/",\
@@ -317,6 +340,7 @@ const RAW_RUNTIME_STATE =
           ["@hotwired/turbo-rails", "npm:8.0.16"],\
           ["app", "workspace:."],\
           ["esbuild", "npm:0.25.8"],\
+          ["stimulus", "npm:3.2.2"],\
           ["tailwindcss", "npm:4.1.11"]\
         ],\
         "linkType": "SOFT"\
@@ -353,6 +377,17 @@ const RAW_RUNTIME_STATE =
           ["@esbuild/win32-ia32", "npm:0.25.8"],\
           ["@esbuild/win32-x64", "npm:0.25.8"],\
           ["esbuild", "npm:0.25.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["stimulus", [\
+      ["npm:3.2.2", {\
+        "packageLocation": "../../../../../../../../home/jorwatt/.yarn/berry/cache/stimulus-npm-3.2.2-472d6ad9f0-10c0.zip/node_modules/stimulus/",\
+        "packageDependencies": [\
+          ["@hotwired/stimulus", "npm:3.2.2"],\
+          ["@hotwired/stimulus-webpack-helpers", "virtual:472d6ad9f0b323948640c0e6ba25e39068ab043b780b923da3c72e15bcb5ed34e3040b22af6d0b2f7ac0017bbfed64eab536f79330b0981e1e1e002c9e6eb683#npm:1.0.1"],\
+          ["stimulus", "npm:3.2.2"]\
         ],\
         "linkType": "HARD"\
       }]\
