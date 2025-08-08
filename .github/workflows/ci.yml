@@ -39,14 +39,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
-
-      - name: Install JavaScript dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Build JavaScript assets
-        run: yarn build
-
 
       - name: Cache node modules
         uses: actions/cache@v3
