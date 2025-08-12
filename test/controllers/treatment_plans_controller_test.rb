@@ -1,48 +1,50 @@
+# test/controllers/treatment_plans_controller_test.rb
 require "test_helper"
 
-class TreatmentPlansControllerTest < ActionDispatch::IntegrationTest
+class ExercisesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @treatment_plan = treatment_plans(:one)
+    sign_in users(:one)
+    @patient = patients(:one)
+    @plan    = treatment_plans(:one)
   end
 
-  test "should get index" do
-    get treatment_plans_url
+  test "index" do
+    get patient_treatment_plans_url(@patient)
+    assert_response :success
+  end
+  
+  test "new" do
+    get new_patient_treatment_plan_url(@patient)
     assert_response :success
   end
 
-  test "should get new" do
-    get new_treatment_plan_url
-    assert_response :success
-  end
-
-  test "should create treatment_plan" do
+  test "create" do
     assert_difference("TreatmentPlan.count") do
-      post treatment_plans_url, params: { treatment_plan: { notes: @treatment_plan.notes, title: @treatment_plan.title } }
+      post patient_treatment_plans_url(@patient),
+           params: { treatment_plan: { title: "Plan A", notes: "..." } }
     end
-
-    assert_redirected_to treatment_plan_url(TreatmentPlan.last)
+    assert_redirected_to patient_treatment_plan_url(@patient, TreatmentPlan.last)
   end
 
-  test "should show treatment_plan" do
-    get treatment_plan_url(@treatment_plan)
+  test "show" do
+    get patient_treatment_plan_url(@patient, @plan)
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_treatment_plan_url(@treatment_plan)
+  test "edit" do
+    get edit_patient_treatment_plan_url(@patient, @plan)
     assert_response :success
   end
 
-  test "should update treatment_plan" do
-    patch treatment_plan_url(@treatment_plan), params: { treatment_plan: { notes: @treatment_plan.notes, title: @treatment_plan.title } }
-    assert_redirected_to treatment_plan_url(@treatment_plan)
+  test "update" do
+    patch patient_treatment_plan_url(@patient, @plan), params: { treatment_plan: { title: "Updated" } }
+    assert_redirected_to patient_treatment_plan_url(@patient, @plan)
   end
 
-  test "should destroy treatment_plan" do
+  test "destroy" do
     assert_difference("TreatmentPlan.count", -1) do
-      delete treatment_plan_url(@treatment_plan)
+      delete patient_treatment_plan_url(@patient, @plan)
     end
-
-    assert_redirected_to treatment_plans_url
+    assert_redirected_to patient_path(@patient)
   end
 end
