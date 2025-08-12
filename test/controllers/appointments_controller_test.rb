@@ -2,47 +2,55 @@ require "test_helper"
 
 class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @appointment = appointments(:one)
+    @user = users(:one)
+    sign_in @user
+
+    @patient     = patients(:one)       # belongs to users(:one)
+    @appointment = appointments(:one)   # belongs to patients(:one)
   end
 
-  test "should get index" do
-    get appointments_url
+  test "index" do
+    get patient_appointments_url(@patient)
     assert_response :success
   end
 
-  test "should get new" do
-    get new_appointment_url
+  test "new" do
+    get new_patient_appointment_url(@patient)
     assert_response :success
   end
 
-  test "should create appointment" do
-    assert_difference("Appointment.count") do
-      post appointments_url, params: { appointment: { end_time: @appointment.end_time, notes: @appointment.notes, patient_id: @appointment.patient_id, start_time: @appointment.start_time } }
+  test "create" do
+    assert_difference("Appointment.count", 1) do
+      post patient_appointments_url(@patient), params: {
+        appointment: {
+          start_time: Time.current,
+          end_time:   1.hour.from_now,
+          notes:      "Check-in"
+        }
+      }
     end
-
-    assert_redirected_to appointment_url(Appointment.last)
+    assert_redirected_to patient_appointment_url(@patient, Appointment.order(:id).last)
   end
 
-  test "should show appointment" do
-    get appointment_url(@appointment)
+  test "show" do
+    get patient_appointment_url(@patient, @appointment)
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_appointment_url(@appointment)
+  test "edit" do
+    get edit_patient_appointment_url(@patient, @appointment)
     assert_response :success
   end
 
-  test "should update appointment" do
-    patch appointment_url(@appointment), params: { appointment: { end_time: @appointment.end_time, notes: @appointment.notes, patient_id: @appointment.patient_id, start_time: @appointment.start_time } }
-    assert_redirected_to appointment_url(@appointment)
+  test "update" do
+    patch patient_appointment_url(@patient, @appointment), params: { appointment: { notes: "Updated" } }
+    assert_redirected_to patient_path(@patient) # matches your controller
   end
 
-  test "should destroy appointment" do
+  test "destroy" do
     assert_difference("Appointment.count", -1) do
-      delete appointment_url(@appointment)
+      delete patient_appointment_url(@patient, @appointment)
     end
-
-    assert_redirected_to appointments_url
+    assert_redirected_to patient_appointments_url(@patient)
   end
 end
