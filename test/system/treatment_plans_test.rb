@@ -1,43 +1,38 @@
+# frozen_string_literal: true
+
 require "application_system_test_case"
 
 class TreatmentPlansTest < ApplicationSystemTestCase
   setup do
-    @treatment_plan = treatment_plans(:one)
+    @patient = patients(:one)
+    @plan    = treatment_plans(:one)
   end
 
   test "visiting the index" do
-    visit treatment_plans_url
-    assert_selector "h1", text: "Treatment plans"
+    visit patient_treatment_plans_url(@patient)
+    assert_selector "h1", text: "Treatment plans" # matches view text/case
   end
 
   test "should create treatment plan" do
-    visit treatment_plans_url
+    visit patient_treatment_plans_url(@patient)
     click_on "New treatment plan"
-
-    fill_in "Notes", with: @treatment_plan.notes
-    fill_in "Title", with: @treatment_plan.title
-    click_on "Create Treatment plan"
-
+    fill_in "Title", with: "Plan from system test"
+    click_on "Save Treatment Plan"
     assert_text "Treatment plan was successfully created"
-    click_on "Back"
   end
 
   test "should update Treatment plan" do
-    visit treatment_plan_url(@treatment_plan)
-    click_on "Edit this treatment plan", match: :first
-
-    fill_in "Notes", with: @treatment_plan.notes
-    fill_in "Title", with: @treatment_plan.title
-    click_on "Update Treatment plan"
-
+    visit patient_treatment_plan_url(@patient, @plan)
+    click_on "Edit Treatment Plan"
+    fill_in "Title", with: "Updated in system test"
+    click_on "Save Treatment Plan"
     assert_text "Treatment plan was successfully updated"
-    click_on "Back"
   end
 
   test "should destroy Treatment plan" do
-    visit treatment_plan_url(@treatment_plan)
-    click_on "Destroy this treatment plan", match: :first
-
-    assert_text "Treatment plan was successfully destroyed"
+    visit patient_treatment_plan_url(@patient, @plan)
+    click_button "Delete Plan"
+    # flash says "deleted." not "destroyed."
+    assert_text "Treatment plan was successfully deleted."
   end
 end
