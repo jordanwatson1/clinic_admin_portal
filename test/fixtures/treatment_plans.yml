@@ -1,13 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  notes: MyText
+  title: Knee Rehab
+  notes: Start slow
   patient: one
   user: one
 
 two:
-  title: MyString
-  notes: MyText
+  title: Shoulder Rehab
+  notes: Light bands
   patient: two
   user: two
+
