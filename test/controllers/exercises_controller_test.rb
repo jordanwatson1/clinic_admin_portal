@@ -1,48 +1,54 @@
+# test/controllers/treatment_plans_controller_test.rb
 require "test_helper"
 
-class ExercisesControllerTest < ActionDispatch::IntegrationTest
+class TreatmentPlansControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @exercise = exercises(:one)
+    @user    = users(:one)
+    sign_in @user
+
+    @patient = patients(:one)            # should belong to users(:one)
+    @plan    = treatment_plans(:one)     # should belong to patients(:one)
   end
 
-  test "should get index" do
-    get exercises_url
+  test "index" do
+    get patient_treatment_plans_url(@patient)
     assert_response :success
   end
 
-  test "should get new" do
-    get new_exercise_url
+  test "new" do
+    get new_patient_treatment_plan_url(@patient)
     assert_response :success
   end
 
-  test "should create exercise" do
-    assert_difference("Exercise.count") do
-      post exercises_url, params: { exercise: { description: @exercise.description, title: @exercise.title, user_id: @exercise.user_id } }
+  test "create" do
+    assert_difference("TreatmentPlan.count", 1) do
+      post patient_treatment_plans_url(@patient), params: {
+        treatment_plan: { title: "Plan A", notes: "..." }
+      }
     end
-
-    assert_redirected_to exercise_url(Exercise.last)
+    assert_redirected_to patient_treatment_plan_url(@patient, TreatmentPlan.order(:id).last)
   end
 
-  test "should show exercise" do
-    get exercise_url(@exercise)
+  test "show" do
+    get patient_treatment_plan_url(@patient, @plan)
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_exercise_url(@exercise)
+  test "edit" do
+    get edit_patient_treatment_plan_url(@patient, @plan)
     assert_response :success
   end
 
-  test "should update exercise" do
-    patch exercise_url(@exercise), params: { exercise: { description: @exercise.description, title: @exercise.title, user_id: @exercise.user_id } }
-    assert_redirected_to exercise_url(@exercise)
+  test "update" do
+    patch patient_treatment_plan_url(@patient, @plan),
+          params: { treatment_plan: { title: "Updated" } }
+    assert_redirected_to patient_treatment_plan_url(@patient, @plan)
   end
 
-  test "should destroy exercise" do
-    assert_difference("Exercise.count", -1) do
-      delete exercise_url(@exercise)
+  test "destroy" do
+    assert_difference("TreatmentPlan.count", -1) do
+      delete patient_treatment_plan_url(@patient, @plan)
     end
-
-    assert_redirected_to exercises_url
+    assert_redirected_to patient_path(@patient)
   end
 end
