@@ -2,12 +2,12 @@
 
 one:
   patient: one
-  start_time: 2025-07-26 13:57:02
-  end_time: 2025-07-26 13:57:02
-  notes: MyText
+  start_time: 2025-08-11 10:00:00
+  end_time: 2025-08-11 10:30:00
+  notes: Initial consult
 
 two:
   patient: two
-  start_time: 2025-07-26 13:57:02
-  end_time: 2025-07-26 13:57:02
-  notes: MyText
+  start_time: 2025-08-12 09:00:00
+  end_time: 2025-08-12 09:30:00
+
