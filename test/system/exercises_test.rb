@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 require "application_system_test_case"
 
 class ExercisesTest < ApplicationSystemTestCase
-  setup do
-    @exercise = exercises(:one)
-  end
+  setup { @exercise = exercises(:one) }
 
   test "visiting the index" do
     visit exercises_url
@@ -12,34 +12,31 @@ class ExercisesTest < ApplicationSystemTestCase
 
   test "should create exercise" do
     visit exercises_url
-    click_on "New exercise"
-
-    fill_in "Description", with: @exercise.description
-    fill_in "Title", with: @exercise.title
-    fill_in "User", with: @exercise.user_id
-    click_on "Create Exercise"
-
+    click_on "New Exercise"
+    fill_in "Title", with: "Bridge"
+    fill_in "Description", with: "Glute bridge"
+    click_on "Save Exercise"
     assert_text "Exercise was successfully created"
-    click_on "Back"
   end
 
   test "should update Exercise" do
     visit exercise_url(@exercise)
-    click_on "Edit this exercise", match: :first
-
-    fill_in "Description", with: @exercise.description
-    fill_in "Title", with: @exercise.title
-    fill_in "User", with: @exercise.user_id
-    click_on "Update Exercise"
-
+    click_on "Edit Exercise"
+    fill_in "Title", with: "Updated"
+    click_on "Save Exercise"
     assert_text "Exercise was successfully updated"
-    click_on "Back"
   end
 
   test "should destroy Exercise" do
-    visit exercise_url(@exercise)
-    click_on "Destroy this exercise", match: :first
+    # create a disposable record so we don't hit FK constraints
+    visit exercises_url
+    click_on "New Exercise"
+    fill_in "Title", with: "Temp To Delete"
+    fill_in "Description", with: "Temp"
+    click_on "Save Exercise"
 
+    # use the real <button> from button_to
+    click_button "Delete"
     assert_text "Exercise was successfully destroyed"
   end
 end
