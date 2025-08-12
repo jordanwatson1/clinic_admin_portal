@@ -66,11 +66,12 @@ class TreatmentPlanExercisesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_treatment_plan_exercise
-      @treatment_plan_exercise = TreatmentPlanExercise.find(params.expect(:id))
+      @treatment_plan_exercise = TreatmentPlanExercise.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def treatment_plan_exercise_params
-      params.expect(treatment_plan_exercise: [ :treatment_plan_id, :exercise_id, :sets, :reps, :instructions ])
+      params.require(:treatment_plan_exercise)
+        .permit(:treatment_plan_id, :exercise_id, :sets, :reps, :instructions)
     end
 end
