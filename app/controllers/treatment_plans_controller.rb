@@ -15,7 +15,6 @@ class TreatmentPlansController < ApplicationController
 
   # GET /treatment_plans/new
   def new
-    @patient = Patient.find(params[:patient_id])
     @treatment_plan = @patient.treatment_plans.build
     @treatment_plan.treatment_plan_exercises.build if @treatment_plan.treatment_plan_exercises.empty?
   end
