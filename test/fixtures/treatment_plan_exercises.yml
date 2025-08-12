@@ -3,13 +3,12 @@
 one:
   treatment_plan: one
   exercise: one
-  sets: 1
-  reps: 1
-  instructions: MyText
+  sets: 3
+  reps: 10
+  instructions: Slow and controlled
 
 two:
-  treatment_plan: two
+  treatment_plan: one
   exercise: two
-  sets: 1
-  reps: 1
-  instructions: MyText
+  sets: 2
+  reps: 12
