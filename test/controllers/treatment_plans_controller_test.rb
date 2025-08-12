@@ -12,7 +12,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     get patient_treatment_plans_url(@patient)
     assert_response :success
   end
-  
+
   test "new" do
     get new_patient_treatment_plan_url(@patient)
     assert_response :success
